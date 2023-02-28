@@ -1,6 +1,10 @@
 section {
     padding: 50px;
 
+    @include xs {
+        padding: 15px;
+    }
+
     @include flex;
 
     .content-box {
@@ -8,6 +12,10 @@ section {
         padding: 30px;
         border: 1px solid $text-color;
         border-radius: 5px;
+
+        @include xs {
+            width: 100%;
+        }
 
         .form-box {
             width: 100%;
