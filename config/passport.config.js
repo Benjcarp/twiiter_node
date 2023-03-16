@@ -39,5 +39,4 @@ passport.use(
             done(error);
         }
     })
-    
 )

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://benjamin:toto@127.0.0.1:27017/twitter_dwwm', {
+mongoose.connect('mongodb://benjamin:toto@127.0.0.1:27017/twitter_dwwm?directConnection=true', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {

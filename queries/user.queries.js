@@ -20,7 +20,7 @@ exports.createNewUser = async (user) => {
 }
 
 exports.findUserByEmail = (email) => {
-    return User.findOne({'local.email': email}).exec();
+    return User.findOne({'local.email' : email}).exec();
 }
 
 exports.findUserById = (id) => {
@@ -29,4 +29,26 @@ exports.findUserById = (id) => {
 
 exports.findUserByUsername = (username) => {
     return User.findOne({username: username}).exec();
+}
+
+exports.findUsersByQuerySearch = (search) => {
+    const regExp = `^${search}`;
+    const reg = new RegExp(regExp);
+    return User.find({username: {$regex: reg}}).exec()
+}
+
+exports.addUserToCurrentUserFollowingList = async (currentUser, userId) => {
+    currentUser.followings = [...currentUser.followings, userId]
+    const user = await this.findUserById(userId);
+    user.followers = [...user.followers, currentUser._id]
+    user.save()
+    return currentUser.save();
+}
+
+exports.removeUserFromCurrentUserFollowingList = async ( currentUser, userId) => {
+    currentUser.followings = currentUser.followings.filter(objId => objId.toString() !== userId)
+    const user = await this.findUserById(userId);
+    user.followers = currentUser.followers.filter(objId => objId !== currentUser._Id)
+    user.save()
+    return currentUser.save();
 }

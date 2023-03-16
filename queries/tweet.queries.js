@@ -10,7 +10,11 @@ exports.findAllTweets = () => {
 }
 
 exports.getCurrentUserTweetsWithFollowing = (user) => {
-    return Tweet.find({author: {$in: [...user.followings, user._id]}}).populate('author').exec();
+    return Tweet.find({ author: { $in: [...user.followings, user._id]}}).populate('author').exec();
+}
+
+exports.findTweetsFromUsername = (authorId) => {
+    return Tweet.find({ author: authorId }).populate('author').exec();
 }
 
 exports.findTweetAndDelete = (tweetId) => {
@@ -18,13 +22,9 @@ exports.findTweetAndDelete = (tweetId) => {
 }
 
 exports.findTweetById = (tweetId) => {
-    return Tweet.findById(tweetId).exec()
+    return Tweet.findById(tweetId).exec();
 }
 
 exports.findTweetAndUpdate = (tweetId, body) => {
     return Tweet.findByIdAndUpdate(tweetId, {$set: body}).exec();
-}
-
-exports.findTweetsFromUsername = (authorId) => {
-    return Tweet.find({author: authorId}).populate('author').exec();
 }
