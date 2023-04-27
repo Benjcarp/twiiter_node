@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const env = require(`../environment/${process.env.NODE_env}`)
 
-mongoose.connect('mongodb://benjamin:toto@127.0.0.1:27017/twitter_dwwm?directConnection=true', {
+mongoose.connect(env.dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {

@@ -6,8 +6,8 @@
   "scripts": {
     "sass": "sass sass/style.scss:public/css/style.css",
     "watch": "sass --watch sass/style.scss:public/css/style.css",
-    "start": "set NODE_ENV=dev&&nodemon app.js",
-    "start:prod": "set NODE_ENV=prod&&nodemon app.js"
+    "start": "set NODE_ENV=dev&&nodemon ./bin/www",
+    "start:prod": "set NODE_ENV=prod&&nodemon ./bin/www"
   },
   "keywords": [],
   "author": "",
